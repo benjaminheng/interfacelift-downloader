@@ -1,4 +1,4 @@
-import os, math, re, urllib, urllib2
+import os, re, urllib2
 
 scrapeUrl = "http://interfacelift.com/wallpaper/downloads/date/widescreen_16:9/1920x1080/"
 host = 'http://interfacelift.com'
@@ -14,8 +14,8 @@ maxPages = 209
 tag = re.compile(r"<a href=\"(?P<url>.+)\"><img.+?src=\"/img_NEW/button_download")
 
 
-if not os.path.exists("scraped") :
-    os.makedirs("scraped")
+if not os.path.exists(saveDir) :
+    os.makedirs(saveDir)
 
 # pointless, just makes the output a little nicer.
 # formats goal if 0 to read 'about XX' 
