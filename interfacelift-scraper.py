@@ -53,7 +53,7 @@ for page in range(1, maxPages+1):
         if goal == 0 or done < goal :
             print "scraping " + str(done + 1) + " of " + goalStr
             dlurl = host + i.group('url')
-            req = req = urllib2.Request(dlurl, None, headers)
+            req = urllib2.Request(dlurl, None, headers)
             saveFile = os.path.join(saveDir, str(done)+'.jpg')
             with open(saveFile, 'wb') as f:
                 try:
