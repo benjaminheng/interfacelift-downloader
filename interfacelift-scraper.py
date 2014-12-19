@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os, re, urllib2
 
 scrapeUrl = 'http://interfacelift.com/wallpaper/downloads/date/widescreen_16:9/1920x1080/'
