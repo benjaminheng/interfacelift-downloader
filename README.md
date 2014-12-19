@@ -13,5 +13,5 @@ Here are the variables you should edit:
 # Usage
 
 ```
-python interfacelift-scraper.py
+$ python interfacelift-scraper.py
 ```
