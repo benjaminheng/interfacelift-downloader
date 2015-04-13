@@ -15,3 +15,7 @@ Here are the variables you should edit:
 ```
 $ python interfacelift-scraper.py
 ```
+
+# License
+
+This script is licensed under the terms of the MIT license.
