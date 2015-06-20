@@ -6,12 +6,20 @@ import threading
 import Queue
 import time
 
+HOST = 'http://interfacelift.com'
+RES_PATH = '/wallpaper/downloads/date/widescreen_16:9/1920x1080/'
+SAVE_DIR = 'wallpapers'
+THREADS = 8
+
+IMG_PATH_PATTERN = re.compile(r'<a href=\"(?P<path>.+)\"><img.+?src=\"/img_NEW/button_download')
+IMG_FILE_PATTERN = re.compile(r'[^/]*$')
+
 def download_file(url, saveDir):
     # interfacelift returns a 403 forbidden unless you include a referer.
     headers = { 'User-agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
                 'Referer': url}
     req = urllib2.Request(url, None, headers)
-    filename = imgFilePattern.search(url).group()
+    filename = IMG_FILE_PATTERN.search(url).group()
     saveFile = os.path.join(saveDir, filename+'.jpg')
     with open(saveFile, 'wb') as f:
         try:
@@ -26,14 +34,14 @@ def download_file(url, saveDir):
 def download_worker():
     while True:
         url = queue.get()
-        download_file(url, saveDir)
+        download_file(url, SAVE_DIR)
         queue.task_done()
 
 def get_page_path(pageNumber):
-    return '%sindex%d.html' % (resPath, pageNumber)
+    return '%sindex%d.html' % (RES_PATH, pageNumber)
 
 def get_url_from_path(path):
-    return '%s/%s' % (host, path)
+    return '%s/%s' % (HOST, path)
 
 def get_page_url(pageNumber):
     return get_url_from_path(get_page_path(pageNumber))
@@ -60,25 +68,14 @@ def pretty_time(seconds):
     h, m = divmod(m, 60)
     return "%d:%02d:%02d" % (h, m, s)
 
-resPath = '/wallpaper/downloads/date/widescreen_16:9/1920x1080/'
-host = 'http://interfacelift.com'
-saveDir = 'wallpapers'
-
-# hi guy from the future, if this script doesn't work, you probably need to update the regex.
-tag = re.compile(r'<a href=\"(?P<path>.+)\"><img.+?src=\"/img_NEW/button_download')
-imgFilePattern = re.compile(r'[^/]*$')
-
-# number of threads
-numThreads = 4
-
-if not os.path.exists(saveDir):
-    os.makedirs(saveDir)
+if not os.path.exists(SAVE_DIR):
+    os.makedirs(SAVE_DIR)
 
 queue = Queue.Queue();
 timeStart = time.time()
 
 # Create threads
-for i in range(numThreads):
+for i in range(THREADS):
     t = threading.Thread(target=download_worker)
     t.daemon = True
     t.start()
@@ -88,7 +85,7 @@ page = 1
 count = 0
 while True:
     pageContent = open_page(page)
-    links = tag.finditer(pageContent)
+    links = IMG_PATH_PATTERN.finditer(pageContent)
     for link in links:
         queue.put(get_url_from_path(link.group('path')))
         count += 1
