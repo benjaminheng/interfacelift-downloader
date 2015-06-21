@@ -9,9 +9,9 @@ $ python interfacelift-downloader.py [-d DEST] [-t THREADS] [resolution]
 
 If not specified, the default parameters used are:
 
-- **Resolution:** 1920x1080
-- **Destination Directory:** ./wallpapers
-- **Threads:** 4
+- Resolution: `1920x1080`
+- Destination Directory: `./wallpapers`
+- Threads: `4`
 
 To list available resolutions:
 
