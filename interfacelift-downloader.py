@@ -48,7 +48,7 @@ IMG_FILE_PATTERN = re.compile(r'[^/]*$')
 # Downloads the given url and write it to the given directory
 def download_file(url, saveDir):
     # interfacelift returns a 403 forbidden unless you include a referer.
-    headers = { 'User-agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
+    headers = { 'User-Agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
                 'Referer': url}
     req = urllib2.Request(url, None, headers)
     filename = IMG_FILE_PATTERN.search(url).group()
@@ -90,15 +90,15 @@ def has_next_page(pageContent, currentPage):
 def open_page(pageNumber):
     url = get_page_url(pageNumber)
     # interfacelift returns a 403 forbidden unless you include a referer.
-    headers = { 'user-agent' : "mozilla/4.0 (compatible; msie 5.5; windows nt)",
-                'referer': url}
+    headers = { 'User-Agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
+                'Referer': url}
     try:
         req = urllib2.Request(url, None, headers)
         f = urllib2.urlopen(req)
     except IOError, e:
-        print 'failed to open', url
+        print 'Failed to open', url
         if hasattr(e, 'code'):
-            print 'error code:', e.code
+            print 'Error code:', e.code
     return f.read()
 
 # Returns the specified number of seconds in H:MM:SS format
