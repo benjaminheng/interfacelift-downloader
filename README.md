@@ -19,6 +19,12 @@ To list available resolutions:
 $ python interfacelift-downloader.py --list
 ```
 
+To show the help message:
+
+```
+$ python interfacelift-downloader.py -h
+```
+
 ### Examples
 
 To download `1920x1080` wallpapers to the `./wallpapers` directory
