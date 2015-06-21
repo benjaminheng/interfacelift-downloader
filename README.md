@@ -27,19 +27,19 @@ $ python interfacelift-downloader.py -h
 
 ### Examples
 
-To download `1920x1080` wallpapers to the `./wallpapers` directory
+To download `1920x1080` wallpapers to the `./wallpapers` directory:
 
 ```
 $ python interfacelift-downloader.py 1920x1080
 ```
 
-To download `1600x900` wallpapers using `8` threads
+To download `1600x900` wallpapers using `8` threads:
 
 ```
 $ python interfacelift-downloader.py -t 8 1600x900
 ```
 
-To download `1600x900` wallpapers to the `./wallpapers/1600x900` directory
+To download `1600x900` wallpapers to the `./wallpapers/1600x900` directory:
 
 ```
 $ python interfacelift-downloader.py -d "wallpapers/1600x900" 1600x900
