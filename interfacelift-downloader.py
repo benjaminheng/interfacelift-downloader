@@ -1,15 +1,46 @@
 #!/usr/bin/python
 import os
+import sys
 import re
 import urllib2
 import threading
 import Queue
 import time
+import argparse
 
 HOST = 'http://interfacelift.com'
-RES_PATH = '/wallpaper/downloads/date/widescreen_16:9/1920x1080/'
-SAVE_DIR = 'wallpapers'
-THREADS = 1
+RES_PATHS = {
+        '3840x2400': '/wallpaper/downloads/date/wide_16:10/3840x2400/',
+        '3360x2100': '/wallpaper/downloads/date/wide_16:10/3360x2100/',
+        '2880x1800': '/wallpaper/downloads/date/wide_16:10/2880x1800/',
+        '2560x1600': '/wallpaper/downloads/date/wide_16:10/2560x1600/',
+        '2560x1600': '/wallpaper/downloads/date/wide_16:10/1920x1200/',
+        '1680x1050': '/wallpaper/downloads/date/wide_16:10/1680x1050/',
+        '1440x900': '/wallpaper/downloads/date/wide_16:10/1440x900/',
+        '1280x800': '/wallpaper/downloads/date/wide_16:10/1280x800/',
+        '5120x2880': '/wallpaper/downloads/date/wide_16:9/5120x2880/',
+        '3840x2160': '/wallpaper/downloads/date/wide_16:9/3840x2160/',
+        '2880x1620': '/wallpaper/downloads/date/wide_16:9/2880x1620/',
+        '2560x1440': '/wallpaper/downloads/date/wide_16:9/2560x1440/',
+        '1920x1080': '/wallpaper/downloads/date/wide_16:9/1920x1080/',
+        '1600x900': '/wallpaper/downloads/date/wide_16:9/1600x900/',
+        '1280x720': '/wallpaper/downloads/date/wide_16:9/1280x720/',
+        '2560x1080': '/wallpaper/downloads/date/wide_21:9/2560x1080/',
+
+        '2560x1024': '/wallpaper/downloads/date/2_screens/2560x1024/',
+        '2880x900': '/wallpaper/downloads/date/2_screens/2880x900/',
+        '3200x1200': '/wallpaper/downloads/date/2_screens/3200x1200/',
+        '3360x1050': '/wallpaper/downloads/date/2_screens/3360x1050/',
+        '3840x1200': '/wallpaper/downloads/date/2_screens/3840x1200/',
+        '5120x1600': '/wallpaper/downloads/date/2_screens/5120x1600/',
+
+        '3840x960': '/wallpaper/downloads/date/3_screens/3840x960/',
+        '3840x1024': '/wallpaper/downloads/date/3_screens/3840x1024/',
+        '4320x900': '/wallpaper/downloads/date/3_screens/4320x900/',
+        '4096x1024': '/wallpaper/downloads/date/3_screens/4096x1024/',
+        '4800x1200': '/wallpaper/downloads/date/3_screens/4800x1200/',
+        '5040x1050': '/wallpaper/downloads/date/3_screens/5040x1050/'
+        }
 
 IMG_PATH_PATTERN = re.compile(r'<a href=\"(?P<path>.+)\"><img.+?src=\"/img_NEW/button_download')
 IMG_FILE_PATTERN = re.compile(r'[^/]*$')
@@ -75,6 +106,39 @@ def pretty_time(seconds):
     m, s = divmod(round(seconds), 60)
     h, m = divmod(m, 60)
     return "%d:%02d:%02d" % (h, m, s)
+
+# Validates the supplied arguments
+def validate_args(parser, args):
+    if args.list:
+        print 'Available resolutions:'
+        for key in RES_PATHS:
+            print '%s' % key
+        sys.exit(0)
+    if args.resolution not in RES_PATHS.keys():
+        print 'Invalid specified resolution (%s)' % args.resolution
+        print 'List available resolutions: %s --list' % os.path.basename(__file__)
+        sys.exit(1)
+
+# Prints the starting variables for the script
+def print_starting_vars():
+    print 'Selected resolution: %s' % args.resolution
+    print 'Destination directory: %s' % SAVE_DIR
+    print 'Threads: %s' % THREADS
+    
+# Parse arguments
+parser = argparse.ArgumentParser(description='Download wallpapers from interfacelift.com')
+parser.add_argument('resolution', nargs='?', help='the resolution to download (default: 1920x1080)', default='1920x1080')
+parser.add_argument('-d', '--dest', help='the directory to download to (default: ./wallpapers)', default='wallpapers')
+parser.add_argument('-t', '--threads', help='the number of threads to use (default: 4)', default=4, type=int)
+parser.add_argument('--list', help='list available resolutions', action='store_true')
+args = parser.parse_args()
+validate_args(parser, args)
+
+# Initialize and print starting variables 
+RES_PATH = RES_PATHS[args.resolution]
+SAVE_DIR = args.dest
+THREADS = args.threads
+print_starting_vars()
 
 # Create directory if not exist
 if not os.path.exists(SAVE_DIR):
