@@ -2,9 +2,9 @@
 import os
 import sys
 import re
-import urllib2
+import urllib.request
 import threading
-import Queue
+import queue
 import time
 import argparse
 
@@ -50,16 +50,16 @@ def download_file(url, saveDir):
     # interfacelift returns a 403 forbidden unless you include a referer.
     headers = { 'User-Agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
                 'Referer': url}
-    req = urllib2.Request(url, None, headers)
+    req = urllib.request.Request(url, None, headers)
     filename = IMG_FILE_PATTERN.search(url).group()
-    saveFile = os.path.join(saveDir, filename+'.jpg')
+    saveFile = os.path.join(saveDir, filename)
     with open(saveFile, 'wb') as f:
         try:
-            res = urllib2.urlopen(req)
+            res = urllib.request.urlopen(req)
             f.write(res.read())
-            print '[+] Downloaded %s' % filename
+            print('[+] Downloaded %s' % filename)
         except Exception as e:
-            print e
+            print(e)
             try: os.remove(saveFile)
             except: pass
 
@@ -93,13 +93,13 @@ def open_page(pageNumber):
     headers = { 'User-Agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
                 'Referer': url}
     try:
-        req = urllib2.Request(url, None, headers)
-        f = urllib2.urlopen(req)
-    except IOError, e:
-        print 'Failed to open', url
+        req = urllib.request.Request(url, None, headers)
+        f = urllib.request.urlopen(req)
+    except IOError as e:
+        print('Failed to open', url)
         if hasattr(e, 'code'):
-            print 'Error code:', e.code
-    return f.read()
+            print('Error code:', e.code)
+    return f.read().decode(errors='ignore')
 
 # Returns the specified number of seconds in H:MM:SS format
 def pretty_time(seconds):
@@ -110,20 +110,20 @@ def pretty_time(seconds):
 # Validates the supplied arguments
 def validate_args(parser, args):
     if args.list:
-        print 'Available resolutions:'
+        print('Available resolutions:')
         for key in RES_PATHS:
-            print '%s' % key
+            print('%s' % key)
         sys.exit(0)
-    if args.resolution not in RES_PATHS.keys():
-        print 'Invalid specified resolution (%s)' % args.resolution
-        print 'List available resolutions: %s --list' % os.path.basename(__file__)
+    if args.resolution not in list(RES_PATHS.keys()):
+        print('Invalid specified resolution (%s)' % args.resolution)
+        print('List available resolutions: %s --list' % os.path.basename(__file__))
         sys.exit(1)
 
 # Prints the starting variables for the script
 def print_starting_vars():
-    print 'Selected resolution: %s' % args.resolution
-    print 'Destination directory: %s' % SAVE_DIR
-    print 'Threads: %s' % THREADS
+    print('Selected resolution: %s' % args.resolution)
+    print('Destination directory: %s' % SAVE_DIR)
+    print('Threads: %s' % THREADS)
     
 # Parse arguments
 parser = argparse.ArgumentParser(description='Download wallpapers from interfacelift.com')
@@ -144,7 +144,7 @@ print_starting_vars()
 if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
-queue = Queue.Queue();
+queue = queue.Queue();
 timeStart = time.time()
 
 # Create threads
@@ -170,5 +170,5 @@ while True:
         break
 
 queue.join() # block until all urls processed
-print '[*] Download finished! (%d files)' % count
-print '[*] Time taken: %s' % pretty_time(time.time() - timeStart)
+print('[*] Download finished! (%d files)' % count)
+print('[*] Time taken: %s' % pretty_time(time.time() - timeStart))

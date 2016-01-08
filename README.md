@@ -1,6 +1,10 @@
 # Python InterfaceLIFT Downloader
 A Python script to download wallpapers from [interfacelift.com](https://interfacelift.com/). This script has multithreading support.
 
+## Prerequsites
+
+- [Python 3.x](https://www.python.org/downloads/)
+
 ## Usage
 
 ```
