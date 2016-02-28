@@ -1,9 +1,9 @@
 # Python InterfaceLIFT Downloader
 A Python script to download wallpapers from [interfacelift.com](https://interfacelift.com/). This script has multithreading support.
 
-## Note
+## Prerequisites
 
-There are two versions of this script, for Python 3 and 2.7 support. To check what version of Python you have, run the following:
+[Python](https://www.python.org/downloads/) is required. There are two versions of this script, for Python 3 and 2.7 support. To check what version of Python you have, run the following:
 
 ```
 python --version
