@@ -22,7 +22,7 @@ RES_PATHS = {
         '3360x2100': '/wallpaper/downloads/date/wide_16:10/3360x2100/',
         '2880x1800': '/wallpaper/downloads/date/wide_16:10/2880x1800/',
         '2560x1600': '/wallpaper/downloads/date/wide_16:10/2560x1600/',
-        '2560x1600': '/wallpaper/downloads/date/wide_16:10/1920x1200/',
+        '1920x1200': '/wallpaper/downloads/date/wide_16:10/1920x1200/',
         '1680x1050': '/wallpaper/downloads/date/wide_16:10/1680x1050/',
         '1440x900': '/wallpaper/downloads/date/wide_16:10/1440x900/',
         '1280x800': '/wallpaper/downloads/date/wide_16:10/1280x800/',
