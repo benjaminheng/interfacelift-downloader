@@ -3,14 +3,7 @@ A Python script to download wallpapers from [interfacelift.com](https://interfac
 
 ## Prerequisites
 
-[Python](https://www.python.org/downloads/) is required. There are two versions of this script, for Python 3 and 2.7 support. To check what version of Python you have, run the following:
-
-```
-python --version
-```
-
-- If you have **Python 3.x**, use `interfacelift-downloader.py`.
-- If you have **Python 2.7**, use `interfacelift-downloader2.7.py`. This script may still work on lower Python 2.x versions.
+- [Python 2.7](https://www.python.org/downloads/) or [Python 3](https://www.python.org/downloads/)
 
 ## Usage
 
@@ -56,6 +49,10 @@ To download `1600x900` wallpapers to the `./wallpapers/1600x900` directory:
 python interfacelift-downloader.py -d "wallpapers/1600x900" 1600x900
 ```
 
-# License
+## Issues
+
+If you encounter any problems, please [submit an issue!](https://github.com/benjaminheng/interfacelift-downloader/issues)
+
+## License
 
 This script is licensed under the terms of the MIT license.

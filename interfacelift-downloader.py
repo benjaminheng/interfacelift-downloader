@@ -1,10 +1,18 @@
 #!/usr/bin/python
+
+from __future__ import print_function
+# Imports for Python 3 and 2 respectively
+try:
+    from urllib.request import urlopen, Request
+    import queue
+except ImportError:
+    from urllib2 import urlopen, Request
+    import Queue as queue
+
 import os
 import sys
 import re
-import urllib.request
 import threading
-import queue
 import time
 import argparse
 
@@ -50,12 +58,12 @@ def download_file(url, saveDir):
     # interfacelift returns a 403 forbidden unless you include a referer.
     headers = { 'User-Agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
                 'Referer': url}
-    req = urllib.request.Request(url, None, headers)
+    req = Request(url, None, headers)
     filename = IMG_FILE_PATTERN.search(url).group()
     saveFile = os.path.join(saveDir, filename)
     with open(saveFile, 'wb') as f:
         try:
-            res = urllib.request.urlopen(req)
+            res = urlopen(req)
             f.write(res.read())
             print('[+] Downloaded %s' % filename)
         except Exception as e:
@@ -93,8 +101,8 @@ def open_page(pageNumber):
     headers = { 'User-Agent' : "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)",
                 'Referer': url}
     try:
-        req = urllib.request.Request(url, None, headers)
-        f = urllib.request.urlopen(req)
+        req = Request(url, None, headers)
+        f = urlopen(req)
     except IOError as e:
         print('Failed to open', url)
         if hasattr(e, 'code'):
