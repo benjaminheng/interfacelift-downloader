@@ -18,36 +18,63 @@ import argparse
 
 HOST = 'http://interfacelift.com'
 RES_PATHS = {
+        # widescreen 16:10
+        '6400x4000': '/wallpaper/downloads/date/wide_16:10/6400x4000/',
+        '5120x3200': '/wallpaper/downloads/date/wide_16:10/5120x3200/',
         '3840x2400': '/wallpaper/downloads/date/wide_16:10/3840x2400/',
         '3360x2100': '/wallpaper/downloads/date/wide_16:10/3360x2100/',
         '2880x1800': '/wallpaper/downloads/date/wide_16:10/2880x1800/',
         '2560x1600': '/wallpaper/downloads/date/wide_16:10/2560x1600/',
+        '2304x1440': '/wallpaper/downloads/date/wide_16:10/2304x1440/',
+        '2048x1280': '/wallpaper/downloads/date/wide_16:10/2048x1280/',
         '1920x1200': '/wallpaper/downloads/date/wide_16:10/1920x1200/',
         '1680x1050': '/wallpaper/downloads/date/wide_16:10/1680x1050/',
         '1440x900': '/wallpaper/downloads/date/wide_16:10/1440x900/',
         '1280x800': '/wallpaper/downloads/date/wide_16:10/1280x800/',
+        '1152x720': '/wallpaper/downloads/date/wide_16:10/1152x720/',
+        '1024x640': '/wallpaper/downloads/date/wide_16:10/1024x640/',
+
+        # widescreen 16:9
         '5120x2880': '/wallpaper/downloads/date/wide_16:9/5120x2880/',
         '3840x2160': '/wallpaper/downloads/date/wide_16:9/3840x2160/',
+        '3200x1800': '/wallpaper/downloads/date/wide_16:9/3200x1800/',
         '2880x1620': '/wallpaper/downloads/date/wide_16:9/2880x1620/',
         '2560x1440': '/wallpaper/downloads/date/wide_16:9/2560x1440/',
         '1920x1080': '/wallpaper/downloads/date/wide_16:9/1920x1080/',
         '1600x900': '/wallpaper/downloads/date/wide_16:9/1600x900/',
+        '1366x768': '/wallpaper/downloads/date/wide_16:9/1366x768/',
         '1280x720': '/wallpaper/downloads/date/wide_16:9/1280x720/',
+
+        # widescreen 21:9
         '2560x1080': '/wallpaper/downloads/date/wide_21:9/2560x1080/',
+        '3440x1440': '/wallpaper/downloads/date/wide_21:9/3440x1440/',
+        '6400x3600': '/wallpaper/downloads/date/wide_21:9/6400x3600/',
 
-        '2560x1024': '/wallpaper/downloads/date/2_screens/2560x1024/',
-        '2880x900': '/wallpaper/downloads/date/2_screens/2880x900/',
-        '3200x1200': '/wallpaper/downloads/date/2_screens/3200x1200/',
-        '3360x1050': '/wallpaper/downloads/date/2_screens/3360x1050/',
-        '3840x1200': '/wallpaper/downloads/date/2_screens/3840x1200/',
+        # dual monitors
         '5120x1600': '/wallpaper/downloads/date/2_screens/5120x1600/',
+        '5120x1440': '/wallpaper/downloads/date/2_screens/5120x1440/',
+        '3840x1200': '/wallpaper/downloads/date/2_screens/3840x1200/',
+        '3840x1080': '/wallpaper/downloads/date/2_screens/3840x1080/',
+        '3360x1050': '/wallpaper/downloads/date/2_screens/3360x1050/',
+        '3200x1200': '/wallpaper/downloads/date/2_screens/3200x1200/',
+        '2880x900': '/wallpaper/downloads/date/2_screens/2880x900/',
+        '2560x1024': '/wallpaper/downloads/date/2_screens/2560x1024/',
 
-        '3840x960': '/wallpaper/downloads/date/3_screens/3840x960/',
-        '3840x1024': '/wallpaper/downloads/date/3_screens/3840x1024/',
-        '4320x900': '/wallpaper/downloads/date/3_screens/4320x900/',
-        '4096x1024': '/wallpaper/downloads/date/3_screens/4096x1024/',
+        # triple monitors
+        '7680x1600': '/wallpaper/downloads/date/3_screens/7680x1600/',
+        '7680x1440': '/wallpaper/downloads/date/3_screens/7680x1440/',
+        '5760x1200': '/wallpaper/downloads/date/3_screens/5760x1200/',
+        '5760x1080': '/wallpaper/downloads/date/3_screens/5760x1080/',
+        '5040x1050': '/wallpaper/downloads/date/3_screens/5040x1050/',
         '4800x1200': '/wallpaper/downloads/date/3_screens/4800x1200/',
-        '5040x1050': '/wallpaper/downloads/date/3_screens/5040x1050/'
+        '4800x900': '/wallpaper/downloads/date/3_screens/4800x900/',
+        '4320x900': '/wallpaper/downloads/date/3_screens/4320x900/',
+        '4200x1050': '/wallpaper/downloads/date/3_screens/4200x1050/',
+        '4096x1024': '/wallpaper/downloads/date/3_screens/4096x1024/',
+        '3840x1024': '/wallpaper/downloads/date/3_screens/3840x1024/',
+        '3840x960': '/wallpaper/downloads/date/3_screens/3840x960/',
+        '3840x720': '/wallpaper/downloads/date/3_screens/3840x720/',
+        '3072x768': '/wallpaper/downloads/date/3_screens/3072x768/'
         }
 
 IMG_PATH_PATTERN = re.compile(r'<a href=\"(?P<path>.+)\"><img.+?src=\"/img_NEW/button_download')
