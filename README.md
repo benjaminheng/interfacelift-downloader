@@ -1,4 +1,5 @@
 # Python InterfaceLIFT Downloader
+
 A Python script to download wallpapers from [interfacelift.com](https://interfacelift.com/). This script has multithreading support.
 
 ## Prerequisites
@@ -8,7 +9,7 @@ A Python script to download wallpapers from [interfacelift.com](https://interfac
 ## Usage
 
 ```
-python interfacelift-downloader.py [-d DEST] [-t THREADS] [resolution]
+python interfacelift-downloader.py [-d DEST] [-t THREADS] [-o] [resolution]
 ```
 
 If not specified, the default parameters used are:
@@ -16,6 +17,7 @@ If not specified, the default parameters used are:
 - Resolution: `1920x1080`
 - Destination Directory: `./wallpapers`
 - Threads: `4`
+- Overwrite: `disabled`
 
 To list available resolutions:
 
@@ -51,7 +53,7 @@ python interfacelift-downloader.py -d "wallpapers/1600x900" 1600x900
 
 ## Issues
 
-If you encounter any problems, please [submit an issue!](https://github.com/benjaminheng/interfacelift-downloader/issues)
+If you have a suggestion or encounter any problems, please [submit an issue!](https://github.com/benjaminheng/interfacelift-downloader/issues)
 
 ## License
 

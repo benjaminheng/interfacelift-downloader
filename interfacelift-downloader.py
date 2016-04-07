@@ -159,13 +159,16 @@ def print_starting_vars():
     print('Selected resolution: %s' % args.resolution)
     print('Destination directory: %s' % SAVE_DIR)
     print('Threads: %s' % THREADS)
+    if OVERWRITE:
+        print('Overwrite: enabled')
     
 # Parse arguments
 parser = argparse.ArgumentParser(description='Download wallpapers from interfacelift.com')
 parser.add_argument('resolution', nargs='?', help='the resolution to download (default: 1920x1080)', default='1920x1080')
 parser.add_argument('-d', '--dest', help='the directory to download to (default: ./wallpapers)', default='wallpapers')
 parser.add_argument('-t', '--threads', help='the number of threads to use (default: 4)', default=4, type=int)
-parser.add_argument('--list', help='list available resolutions', action='store_true')
+parser.add_argument('-o', '--overwrite', help='overwrite files with same name (default: disabled)', action='store_true')
+parser.add_argument('-l', '--list', help='list available resolutions', action='store_true')
 args = parser.parse_args()
 validate_args(parser, args)
 
@@ -173,6 +176,7 @@ validate_args(parser, args)
 RES_PATH = RES_PATHS[args.resolution]
 SAVE_DIR = args.dest
 THREADS = args.threads
+OVERWRITE = args.overwrite
 print_starting_vars()
 
 # Create directory if not exist
@@ -191,12 +195,24 @@ for i in range(THREADS):
 # Add image URLs to queue
 page = 1
 count = 0
+skipped = 0
 while True:
     pageContent = open_page(page)
     links = IMG_PATH_PATTERN.finditer(pageContent)
     for link in links:
-        queue.put(get_url_from_path(link.group('path')))
-        count += 1
+        url = get_url_from_path(link.group('path'))
+        filename = IMG_FILE_PATTERN.search(url).group()
+        saveFile = os.path.join(SAVE_DIR, filename)
+
+        if OVERWRITE or not os.path.isfile(saveFile):
+            queue.put(url)
+            count += 1
+        else:
+            skipped += 1
+
+        # Show user something is happening
+        if skipped > 0 and skipped % 50 == 0:
+            print('[-] Skipped %d files that already exist' % skipped)
 
     # break if no next page
     if has_next_page(pageContent, page):
