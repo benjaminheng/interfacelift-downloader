@@ -2,6 +2,8 @@
 
 A Python script to download wallpapers from [interfacelift.com](https://interfacelift.com/). This script has multithreading support.
 
+Download the latest release [here](https://github.com/benjaminheng/interfacelift-downloader/releases).
+
 ## Prerequisites
 
 - [Python 2.7](https://www.python.org/downloads/) or [Python 3](https://www.python.org/downloads/)
