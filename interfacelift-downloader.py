@@ -195,7 +195,6 @@ for i in range(THREADS):
 # Add image URLs to queue
 page = 1
 count = 0
-skipped = 0
 while True:
     pageContent = open_page(page)
     links = IMG_PATH_PATTERN.finditer(pageContent)
@@ -208,11 +207,7 @@ while True:
             queue.put(url)
             count += 1
         else:
-            skipped += 1
-
-        # Show user something is happening
-        if skipped > 0 and skipped % 50 == 0:
-            print('[-] Skipped %d files that already exist' % skipped)
+            print('[-] Skipped %s (already exists)' % filename)
 
     # break if no next page
     if has_next_page(pageContent, page):
