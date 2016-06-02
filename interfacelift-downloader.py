@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 from __future__ import print_function
 # Imports for Python 3 and 2 respectively
 try:
@@ -74,7 +73,28 @@ RES_PATHS = {
         '3840x1024': '/wallpaper/downloads/date/3_screens/3840x1024/',
         '3840x960': '/wallpaper/downloads/date/3_screens/3840x960/',
         '3840x720': '/wallpaper/downloads/date/3_screens/3840x720/',
-        '3072x768': '/wallpaper/downloads/date/3_screens/3072x768/'
+        '3072x768': '/wallpaper/downloads/date/3_screens/3072x768/',
+
+        # iPhone
+        'iphone_6_plus': '/wallpaper/downloads/date/iphone/iphone_6_plus/',
+        'iphone_6': '/wallpaper/downloads/date/iphone/iphone_6/',
+        'iphone_5s': '/wallpaper/downloads/date/iphone/iphone_5s,_5c,_5/',
+        'iphone_5c': '/wallpaper/downloads/date/iphone/iphone_5s,_5c,_5/',
+        'iphone_5': '/wallpaper/downloads/date/iphone/iphone_5s,_5c,_5/',
+        'iphone_4': '/wallpaper/downloads/date/iphone/iphone_4,_4s/',
+        'iphone_4s': '/wallpaper/downloads/date/iphone/iphone_4,_4s/',
+        'iphone': '/wallpaper/downloads/date/iphone/iphone,_3g,_3gs/',
+        'iphone_3g': '/wallpaper/downloads/date/iphone/iphone,_3g,_3gs/',
+        'iphone_3gs': '/wallpaper/downloads/date/iphone/iphone,_3g,_3gs/',
+
+        # iPad
+        'ipad_air': '/wallpaper/downloads/date/ipad/ipad_air,_4,_3,_retina_mini/',
+        'ipad_4': '/wallpaper/downloads/date/ipad/ipad_air,_4,_3,_retina_mini/',
+        'ipad_3': '/wallpaper/downloads/date/ipad/ipad_air,_4,_3,_retina_mini/',
+        'ipad_retina_mini': '/wallpaper/downloads/date/ipad/ipad_air,_4,_3,_retina_mini/',
+        'ipad_mini': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
+        'ipad_1': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
+        'ipad_2': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
         }
 
 IMG_PATH_PATTERN = re.compile(r'<a href=\"(?P<path>.+)\"><img.+?src=\"/img_NEW/button_download')
