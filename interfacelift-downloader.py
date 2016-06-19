@@ -15,6 +15,14 @@ import threading
 import time
 import argparse
 
+# Merge dictionaries. Used for merging resolutions.
+# Necessary workaround for Python 2.x   :(
+def merge_dicts(*dict_args):
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
+
 HOST = 'http://interfacelift.com'
 RES_WIDESCREEN_16_10 = {
     # widescreen 16:10
@@ -102,15 +110,15 @@ RES_IPAD = {
     'ipad_1': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
     'ipad_2': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
 }
-RES_PATHS = {
-    **RES_WIDESCREEN_16_10,
-    **RES_WIDESCREEN_16_9,
-    **RES_WIDESCREEN_21_9,
-    **RES_DUAL_MONITORS,
-    **RES_TRIPLE_MONITORS,
-    **RES_IPHONE,
-    **RES_IPAD,
-}
+RES_PATHS = merge_dicts(
+    RES_WIDESCREEN_16_10,
+    RES_WIDESCREEN_16_9,
+    RES_WIDESCREEN_21_9,
+    RES_DUAL_MONITORS,
+    RES_TRIPLE_MONITORS,
+    RES_IPHONE,
+    RES_IPAD,
+)
 
 IMG_PATH_PATTERN = re.compile(r'<a href=\"(?P<path>.+)\"><img.+?src=\"/img_NEW/button_download')
 IMG_FILE_PATTERN = re.compile(r'[^/]*$')
