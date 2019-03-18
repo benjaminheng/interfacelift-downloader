@@ -109,6 +109,8 @@ RES_IPAD = {
     'ipad_mini': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
     'ipad_1': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
     'ipad_2': '/wallpaper/downloads/date/ipad/ipad_mini,_ipad_1,_2/',
+    'ipad_pro_10.5': '/wallpaper/downloads/date/ipad/ipad_pro_(10.5)/',
+    'ipad_pro_12.9': '/wallpaper/downloads/date/ipad/ipad_pro_(12.9)/',
 }
 RES_PATHS = merge_dicts(
     RES_WIDESCREEN_16_10,
