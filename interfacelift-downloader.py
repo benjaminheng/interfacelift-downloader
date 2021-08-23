@@ -264,7 +264,7 @@ while True:
         filename = IMG_FILE_PATTERN.search(url).group()
         saveFile = os.path.join(SAVE_DIR, filename)
 
-        if OVERWRITE or not os.path.isfile(saveFile):
+        if OVERWRITE or not os.path.isfile(saveFile) or os.path.getsize(saveFile) == 0:
             queue.put(url)
             count += 1
         else:
